@@ -1,28 +1,27 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from setup import init_setup, login, error_message_login
+import time
 
-
-navegador = webdriver.Chrome()
+browser = init_setup()
 
 try:
-    navegador.get("http://www.automationpractice.pl/index.php?controller=authentication&back=my-account")
-    navegador.maximize_window()
 
-    def caso_1(): #Dado que o usuário tenta logar com credenciais incorretas - web
-        WebDriverWait(navegador, 10).until(EC.presence_of_element_located((By.ID, "email")))
-        navegador.find_element(By.ID, "email").send_keys("teste@teste.com")
-        navegador.find_element(By.ID, "passwd").send_keys("teste1")
-        navegador.find_element(By.ID, "SubmitLogin").click()
+    def case_1(): #Dado que o usuário tenta logar com credenciais incorretas - web
+        try:
+            WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.ID, "email")))
+            login("teste1@teste.com","Teste",browser)
 
-        error_message = WebDriverWait(navegador, 10).until(
-            EC.presence_of_element_located((By.XPATH, "//div[@class='alert alert-danger']"))
-        )
-        assert "Authentication failed" in error_message.text
-        print("Caso 1 executado com sucesso.")
+            error_message = error_message_login(browser)
+            assert "Authentication failed" in error_message.text.strip()
+            print("Case 1 executed successfully")
+            
+        except Exception as e:
+            print(f"Erro durante o Caso 1: {e}")
 
-    caso_1()
+    case_1()
 
 finally:
-    navegador.quit()
+    time.sleep(2)
+    browser.quit()
