@@ -5,7 +5,7 @@
 # 	• O usuário tenta se cadastrar com um e-mail inválido.
 # 	E-mail: teste@teste
 # Então:
-# O sistema rejeita o e-mail inválido e exibe uma mensagem de dizendo "Invalid email address." indicando que o endereço de e-mail é inválido.
+#   • O sistema rejeita o e-mail inválido e exibe uma mensagem de dizendo "Invalid email address." indicando que o endereço de e-mail é inválido.
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait

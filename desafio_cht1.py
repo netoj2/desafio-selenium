@@ -7,7 +7,7 @@
 # 	E-mail : teste1@teste.com
 # 	Senha: Teste
 # Então:
-# O sistema não permite o login e exibe uma mensagem de erro dizendo "Authentication failed", garantindo que apenas credenciais corretas possam acessar a conta.
+#   • O sistema não permite o login e exibe uma mensagem de erro dizendo "Authentication failed", garantindo que apenas credenciais corretas possam acessar a conta.
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
